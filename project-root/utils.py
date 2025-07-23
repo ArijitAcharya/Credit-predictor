@@ -5,52 +5,22 @@ Created on Mon Dec  9 21:15:47 2024
 @author: Admin
 """
 
+import os
 import joblib
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 
-model_data = joblib.load(r"project-root/model/model_data.pkl")
-model_data
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(_SCRIPT_DIR, "model", "model_data.pkl")
+model_data = joblib.load(model_path)
 
-
-# =============================================================================
-# import importlib
-# 
-# # List of libraries to check
-# libraries = [
-#     "joblib",
-#     "pandas",
-#     "numpy",
-#     "streamlit",
-#     "sklearn",
-#     "xgboost"
-# ]
-# 
-# # Loop through each library and print its version
-# for library in libraries:
-#     try:
-#         module = importlib.import_module(library)
-#         print(f"{library} version: {module.__version__}")
-#     except ImportError:
-#         print(f"{library} is not installed.")
-#     except AttributeError:
-#         print(f"Unable to determine version for {library}.")
-# =============================================================================
 
 model = model_data['model']
-print(model)
-
 scaler = model_data['scaler']
-print(scaler)
-
 features = model_data['features']
-print(features)
-len(features)
-
 columns_to_scale = model_data['cols_to_scale']
-print(columns_to_scale)
 
 
 def data_preparation(age, avg_dpd_per_dm, credit_utilization_ratio, dmtlm, income, 
@@ -68,13 +38,20 @@ def data_preparation(age, avg_dpd_per_dm, credit_utilization_ratio, dmtlm, incom
                   'loan_purpose_Education': 1 if loan_purpose == 'Education' else 0,
                   'loan_purpose_Home': 1 if loan_purpose == 'Home' else 0,
                   'loan_purpose_Personal': 1 if loan_purpose == 'Personal' else 0,
+                  'loan_purpose_Auto': 1 if loan_purpose == 'Auto' else 0,
                   'loan_type_Unsecured': 1 if loan_type == 'Unsecured' else 0,
                   'residence_type_Owned': 1 if residence_type == 'Owned' else 0,
-                  'residence_type_Rented': 1 if residence_type == 'Rented' else 0}
+                  'residence_type_Rented': 1 if residence_type == 'Rented' else 0,
+                  'residence_type_Mortgage': 1 if residence_type == 'Mortgage' else 0}
     
     df = pd.DataFrame([data_input])
+    
+    # Reindex to ensure the DataFrame has all the feature columns the model expects, in the correct order.
+    # Missing columns will be added with a value of 0.
+    df = df.reindex(columns=features, fill_value=0)
+    
+    # Scale the numerical columns after ensuring the DataFrame is correctly structured.
     df[columns_to_scale] = scaler.transform(df[columns_to_scale])
-    df = df[features]
     
     return df
 
