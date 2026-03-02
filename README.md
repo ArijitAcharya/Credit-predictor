@@ -5,6 +5,8 @@ Credit risk modeling is crucial for financial institutions to assess the likelih
 
 [**Web Link**](https://credit-risk-modeling-lauki-finance.streamlit.app/)
 
+[**GitHub Repository**](https://github.com/ArijitAcharya/Credit-predictor)
+
 ## Default Risk Prediction: Model Evaluation and Deployment
 
 ### Overview
@@ -29,11 +31,11 @@ This project aims to develop a machine learning model to predict default risk, e
 - **Interpretability Tools**:
   - SHAP (feature importance)
 
-    ![FI](https://github.com/nafiul-araf/Credit-Risk-Modeling-End-to-End-Project/blob/main/images/Feature%20importance.png)
+    ![Feature Importance](images/Feature%20importance.png)
 
   - LIME (local interpretability)
 
-    ![lime](https://github.com/nafiul-araf/Credit-Risk-Modeling-End-to-End-Project/blob/main/images/Lime.JPG)
+    ![LIME](images/Lime.JPG)
 
 ### Key Results
 - The model demonstrates superior ability to classify defaults with high precision and recall.
@@ -48,7 +50,7 @@ This project aims to develop a machine learning model to predict default risk, e
 ### Visualizations
 1. AUC-ROC curve with near-perfect performance (AUC: 0.99).
 
-   ![rocauc](https://github.com/nafiul-araf/Credit-Risk-Modeling-End-to-End-Project/blob/main/images/ROC%20Curve.png)
+   ![ROC Curve](images/ROC%20Curve.png)
    
 2. SHAP summary plot illustrating top features influencing predictions.
 
@@ -84,7 +86,7 @@ project-root/
 │   ├── model_data.pkl                # Serialized machine learning model and preprocessing data
 │   ├── tuned_hyperparameters.txt    # Details of the optimized hyperparameters
 │
-├── Lauki Finance.JPG                # Project logo or related image
+├── Cred_Predictor.jpg                # Project logo or related image
 ├── Readme.md                        # Documentation file
 ├── main.py                          # Streamlit application file
 ├── requirements.txt                 # List of required Python packages
@@ -98,8 +100,8 @@ project-root/
 ### **Step 1: Clone the Repository**
 Download the project repository to your local machine:
 ```bash
-git clone https://github.com/username/repository-name.git
-cd repository-name//project-root
+git clone https://github.com/ArijitAcharya/Credit-predictor.git
+cd Credit-predictor/project-root
 ```
 
 ### **Step 2: Set Up the Python Environment**
@@ -159,7 +161,7 @@ All dependencies are listed in `requirements.txt` for easy installation.
 1. **Home Page**: Displays the project title and input interface.
 2. **Results Page**: Shows default probability, credit score, and rating with actionable insights.
 
-![image](https://github.com/user-attachments/assets/d1b51282-cf2a-4e9a-ab19-fbe407b425ba)
+![App Screenshot](images/cred_prediction_app_ss.jpg)
 
 
 
